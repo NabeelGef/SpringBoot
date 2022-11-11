@@ -28,13 +28,17 @@ public class GroupController {
                 result.add(groups.get(i));
             }
             else{
-                for(int j = 0 ;j <groups.get(i).getUsers_id().length;j++){
-                    if(groups.get(i).getUsers_id()[j].equals(id)){
+                for(int j = 0 ;j <groups.get(i).getUsers_id().size();j++){
+                    if(groups.get(i).getUsers_id().get(j).equals(id)){
                         result.add(groups.get(i));
                     }
                 }
             }
         }
         return result;
+    }
+    @GetMapping("/{gid}/{userId}")
+    public Group AddToGroup(@PathVariable String userId , @PathVariable String  gid){
+        return  groupServices.AddToGroup(userId , gid);
     }
 }

@@ -18,4 +18,13 @@ public class GroupServices {
     public List<Group> getAllGroups(){
         return groupRepo.findAll();
     }
+    public Group AddToGroup(String userId , String gid){
+        Group group = groupRepo.findById(gid).get();
+        List<String>names = group.getUsers_id();
+
+        names.add(userId);
+        group.setUsers_id(names);
+        groupRepo.save(group);
+        return group;
+        }
 }
